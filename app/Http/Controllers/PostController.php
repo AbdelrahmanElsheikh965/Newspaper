@@ -6,6 +6,14 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public $posts = [
+        ['id' => 1, 'title' => 'test_1', 'body' => 'asda', 'image' => 'asdas'],
+        ['id' => 2, 'title' => 'test_2', 'body' => 'asda', 'image' => 'asdas'],
+        ['id' => 3, 'title' => 'test_3', 'body' => 'asda', 'image' => 'asdas'],
+        ['id' => 4, 'title' => 'asdas', 'body' => 'asda', 'image' => 'asdas'],
+        ['id' => 5, 'title' => 'asdas', 'body' => 'asda', 'image' => 'asdas'],
+        ['id' => 6, 'title' => 'asdas', 'body' => 'asda', 'image' => 'asdas'],
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -13,16 +21,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = [
-            ['id' => 1, 'title' => 'asdas', 'body' => 'asda', 'image' => 'asdas'],
-            ['id' => 1, 'title' => 'asdas', 'body' => 'asda', 'image' => 'asdas'],
-            ['id' => 1, 'title' => 'asdas', 'body' => 'asda', 'image' => 'asdas'],
-            ['id' => 1, 'title' => 'asdas', 'body' => 'asda', 'image' => 'asdas'],
-            ['id' => 1, 'title' => 'asdas', 'body' => 'asda', 'image' => 'asdas'],
-            ['id' => 1, 'title' => 'asdas', 'body' => 'asda', 'image' => 'asdas'],
-        ];
+        
 
-        return view('posts.index')->with('posts', $posts);
+        return view('posts.index')->with('posts', $this->posts);
     }
 
     /**
@@ -54,7 +55,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = $this->posts[$id];
+        return view('posts.post')->with('post', $post);
     }
 
     /**

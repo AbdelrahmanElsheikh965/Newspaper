@@ -64,7 +64,7 @@
 
   <main id="main">
 
-    @yield('posts')
+    @yield('content')
 
   </main>
   

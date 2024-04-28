@@ -1,6 +1,6 @@
 @extends('posts.main')
 
-@section('posts')
+@section('content')
      <!-- ======= Portfolio Section ======= -->
      <section id="work" class="portfolio-mf sect-pt4 route">
       <div class="container">
@@ -31,7 +31,7 @@
               <div class="work-content">
                 <div class="row">
                   <div class="col-sm-8">
-                    <h2 class="w-title">{{$post['title']}}</h2>
+                    <h2 class="w-title"> <a href="{{route('post-details', $post['id'])}}"> {{$post['title']}} </h2>
                     <div class="w-more">
                       <span class="w-ctegory">Web Design</span> / <span class="w-date">18 Sep. 2018</span>
                     </div>
