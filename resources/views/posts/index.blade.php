@@ -33,9 +33,15 @@
                   <div class="col-sm-8">
                     <h2 class="w-title"> <a href="{{route('post-details', $post['id'])}}"> {{$post['title']}} </h2>
                   </div>
-                  <div class="col-sm-12">
+                  <div class="col-sm-4">
                     <div class="w-like">
-                      <a href="portfolio-details.html" onclick="return confirm('Are you sure?')"> <i class="bi bi-trash3-fill"></i> </span></a>
+                      <a href="{{route('delete-post', $post['id'])}}" onclick="return confirm('Are you sure?')"> <i class="bi bi-trash3-fill"></i> </span></a>
+                      <a href="{{route('post-details', $post['id'])}}"> <i class="bi bi-eye-fill"></i> </span></a>
+                    </div>
+                  </div>
+                  <div class="col-sm-8">
+                    <div class="w-like">
+                      <a href="{{route('edit-post', $post['id'])}}"> <i class="bi bi-pencil-fill"></i> </span></a>
                     </div>
                   </div>
                 </div>

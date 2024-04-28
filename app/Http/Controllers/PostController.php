@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public $posts = [
+    public static $posts = [
         ['id' => 1, 'title' => 'test_1', 'body' => 'asda', 'image' => 'asdas'],
         ['id' => 2, 'title' => 'test_2', 'body' => 'asda', 'image' => 'asdas'],
         ['id' => 3, 'title' => 'test_3', 'body' => 'asda', 'image' => 'asdas'],
@@ -21,7 +21,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index')->with('posts', $this->posts);
+        return view('posts.index')->with('posts', self::$posts);
     }
 
     /**
@@ -53,7 +53,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = $this->posts[$id];
+        $post = self::$posts[$id];
         return view('posts.post')->with('post', $post);
     }
 
@@ -65,7 +65,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = self::$posts[$id];
+        return view('posts.edit')->with('post', $post);
     }
 
     /**
@@ -88,6 +89,6 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        echo $id;
     }
 }
