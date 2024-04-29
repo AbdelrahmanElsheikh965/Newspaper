@@ -50,8 +50,8 @@
           </div>
 
           @endforeach
-
+          {{$posts->links()}}
         </div>
       </div>
     </section><!-- End Portfolio Section -->
-@endsection
+    @endsection

@@ -20,13 +20,13 @@
                         <div class="row">
                           <div class="col-md-12 mb-3">
                             <div class="form-group">
-                              <input type="text" name="name" value="{{$post['title']}}" class="form-control" id="name" placeholder="Title" required>
+                              <input type="text" name="name" value="{{$post->title}}" class="form-control" id="name" placeholder="Title" required>
                             </div>
                           </div>
 
                           <div class="col-md-12">
                             <div class="form-group">
-                              <textarea class="form-control" name="message" rows="5" placeholder="Body ..." required>{{$post['body']}}</textarea>
+                              <textarea class="form-control" name="message" rows="5" placeholder="Body ..." required>{{$post->body}}</textarea>
                             </div>
                           </div>
 

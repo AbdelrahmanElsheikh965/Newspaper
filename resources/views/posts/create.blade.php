@@ -16,28 +16,29 @@
                       </h5>
                     </div>
                     <div>
-                      <form action="" method="post" role="form" class="php-email-form">
+                      <form action="{{route('add-new-post')}}" method="POST">
+                        @csrf
                         <div class="row">
                           <div class="col-md-12 mb-3">
                             <div class="form-group">
-                              <input type="text" name="name" class="form-control" id="name" placeholder="Title" required>
+                              <input type="text" name="title" class="form-control" id="name" placeholder="Title">
                             </div>
                           </div>
 
                           <div class="col-md-12">
                             <div class="form-group">
-                              <textarea class="form-control" name="message" rows="5" placeholder="Body ..." required></textarea>
+                              <textarea class="form-control" rows="5" name="body" placeholder="Body ..."></textarea>
                             </div>
                           </div>
 
                           <div class="col-md-12 mb-3 mt-3">
                             <div class="form-group">
-                              <input type="file" name="post_image" class="form-control" id="name" required>
+                              <input type="file" class="form-control" id="name">
                             </div>
                           </div>
 
                           <div class="col-md-12 text-center">
-                            <button type="submit" class="button button-a button-big button-rouded">Done</button>
+                            <input type="submit" class="button button-a button-big button-rouded" value="Done">
                           </div>
                         </div>
                       </form>
@@ -51,3 +52,13 @@
       </div>
     </section>
 @endsection
+
+@push('scripts')
+  <script>
+
+    // function test() {
+      
+    // }
+
+  </script>
+@endpush

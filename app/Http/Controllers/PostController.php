@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -21,7 +22,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index')->with('posts', self::$posts);
+        return view('posts.index')->with('posts', Post::paginate(9));
     }
 
     /**
@@ -42,7 +43,12 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $created = Post::create($request->all());
+        if ($created) {
+            return redirect()->to('/posts');
+        }
+        return redirect()->to('/new-post');
     }
 
     /**
@@ -53,7 +59,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = self::$posts[$id];
+        $post = Post::find($id);
         return view('posts.post')->with('post', $post);
     }
 
