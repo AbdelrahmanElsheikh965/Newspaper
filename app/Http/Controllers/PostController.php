@@ -40,12 +40,15 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        Helper::saveImage($request->file('post_image'));
-
-        $request->merge(['image'=> $request->file('post_image')->getClientOriginalName()]);
-
-        $created = Post::create($request->except('post_image'));
         
+        if ($request->file('post_image')) {
+            Helper::saveImage($request->file('post_image'));
+            $request->merge(['image'=> $request->file('post_image')->getClientOriginalName()]);
+            $created = Post::create($request->except('post_image'));
+        }else{
+            $created = Post::create($request->except('post_image'));
+        }
+
         if ($created) {
             return redirect()->to('/posts');
         }

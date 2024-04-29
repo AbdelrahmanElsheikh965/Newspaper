@@ -33,7 +33,7 @@
 
                           <div class="col-md-12 mb-3 mt-3">
                             <div class="form-group">
-                              <input type="file" name="post_image" class="form-control" id="name">
+                              <input type="file" name="post_image" required class="form-control" id="name">
                             </div>
                           </div>
 
