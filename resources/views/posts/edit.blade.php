@@ -16,7 +16,7 @@
                       </h5>
                     </div>
                     <div>
-                      <form action="{{route('posts.update', $post['id'])}}" method="post">
+                      <form action="{{route('posts.update', $post['id'])}}" method="post" enctype="multipart/form-data">
                       {{ csrf_field() }}
                       {{ method_field('PUT') }}
 
@@ -35,7 +35,7 @@
 
                           <div class="col-md-12 mb-3 mt-3">
                             <div class="form-group">
-                              <input type="file" class="form-control" id="name">
+                              <input type="file" name="post_image" class="form-control" id="name">
                             </div>
                           </div>
 

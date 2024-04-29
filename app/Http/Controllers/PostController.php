@@ -39,7 +39,7 @@ class PostController extends Controller
         Helper::saveImage($request->file('post_image'));
 
         $request->merge(['image'=> $request->file('post_image')->getClientOriginalName()]);
-        // dd($request);
+
         $created = Post::create($request->except('post_image'));
         
         if ($created) {
@@ -83,7 +83,15 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $post = Post::find($id);
-        $post->update($request->all());
+        
+        if ($request->file('post_image')) {
+            Helper::saveImage($request->file('post_image'));
+            $request->merge(['image' => $request->file('post_image')->getClientOriginalName()]);
+            $post->update($request->except('post_image'));
+        }else{
+            $post->update($request->except('post_image'));
+        }
+
         return view('posts.edit')->with('post', $post);
     }
 
