@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Helpers\Helper;
 
 class PostController extends Controller
 {
@@ -35,10 +36,16 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $created = Post::create($request->all());
+        Helper::saveImage($request->file('post_image'));
+
+        $request->merge(['image'=> $request->file('post_image')->getClientOriginalName()]);
+        // dd($request);
+        $created = Post::create($request->except('post_image'));
+        
         if ($created) {
             return redirect()->to('/posts');
         }
+
         return redirect()->to('/new-post');
     }
 

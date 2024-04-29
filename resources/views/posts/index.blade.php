@@ -25,7 +25,7 @@
             <div class="work-box">
               <a href="assets/img/work-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
                 <div class="work-img">
-                  <img src="assets/img/work-1.jpg" alt="" class="img-fluid">
+                  <img src="{{asset('images/' . $post['image'])}}" alt="" class="img-fluid">
                 </div>
               </a>
               <div class="work-content">

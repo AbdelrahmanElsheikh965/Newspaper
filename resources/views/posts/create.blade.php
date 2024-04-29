@@ -16,7 +16,7 @@
                       </h5>
                     </div>
                     <div>
-                      <form action="{{route('posts.store')}}" method="POST">
+                      <form action="{{route('posts.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                           <div class="col-md-12 mb-3">
@@ -33,7 +33,7 @@
 
                           <div class="col-md-12 mb-3 mt-3">
                             <div class="form-group">
-                              <input type="file" class="form-control" id="name">
+                              <input type="file" name="post_image" class="form-control" id="name">
                             </div>
                           </div>
 
