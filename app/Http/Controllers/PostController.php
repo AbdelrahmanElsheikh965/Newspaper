@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Helpers\Helper;
+use App\Models\User;
 
 class PostController extends Controller
 {
@@ -15,7 +16,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index')->with('posts', Post::paginate(9));
+        return view('posts.index')->with([
+            'posts' => Post::paginate(9),
+            'author' => User::first(),
+        ]);
     }
 
     /**

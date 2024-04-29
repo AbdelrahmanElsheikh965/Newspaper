@@ -25,28 +25,39 @@
         <div class="work-box">
           <a href="assets/img/work-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
             <div class="work-img">
-              <img src="{{asset('images/' . $post['image'])}}" alt="" class="img-fluid">
+              <img src="{{asset('images/' . $post['image'])}}" class="img-fluid">
             </div>
           </a>
           <div class="work-content">
             <div class="row">
-              <div class="col-sm-2">
+              <div class="col-sm-8">
                 <h2 class="w-title"> <a href="{{route('posts.show', $post['id'])}}"> {{$post['title']}} </h2>
+                <div class="w-more">
+                  <span class="w-ctegory">Author Name: </span> / <span class="w-date"> {{$author['name']}} </span>
+                </div>
+              </div>
+
+              <br>
+              <div class="col-sm-4">
                 <form action="{{route('posts.destroy', $post['id'])}}" method="post">
                   @csrf @method('DELETE') 
                   <input type="submit" value="delete" onclick="return confirm('Are you sure?')">
                 </form>
               </div>
+
+
               <div class="col-sm-2">
                 <div class="w-like">
                   <x-button target="{{route('posts.show', $post['id'])}}" type="primary" text="bi bi-eye-fill" />
                 </div>
               </div>
+              
               <div class="col-sm-2">
                 <div class="w-like">
                   <x-button target="{{route('posts.edit', $post['id'])}}" type="secondary" text="bi bi-pencil-fill" />
                 </div>
               </div>
+           
             </div>
           </div>
         </div>
