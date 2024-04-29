@@ -14,13 +14,7 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/posts', [PostController::class, 'index']);
-Route::get('/posts/{id}', [PostController::class, 'show'])->name('post-details');
-Route::get('/new-post', [PostController::class, 'create'])->name('new-post');
-Route::post('/add-new-post', [PostController::class, 'store'])->name('add-new-post');
-Route::delete('/delete-post/{id}', [PostController::class, 'destroy'])->name('delete-post');
-Route::get('/edit-post/{id}', [PostController::class, 'edit'])->name('edit-post');
-
+Route::resource('posts', 'PostController');
 
 
 Route::get('/', function() {

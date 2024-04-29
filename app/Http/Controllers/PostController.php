@@ -7,14 +7,6 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public static $posts = [
-        ['id' => 1, 'title' => 'test_1', 'body' => 'asda', 'image' => 'asdas'],
-        ['id' => 2, 'title' => 'test_2', 'body' => 'asda', 'image' => 'asdas'],
-        ['id' => 3, 'title' => 'test_3', 'body' => 'asda', 'image' => 'asdas'],
-        ['id' => 4, 'title' => 'asdas', 'body' => 'asda', 'image' => 'asdas'],
-        ['id' => 5, 'title' => 'asdas', 'body' => 'asda', 'image' => 'asdas'],
-        ['id' => 6, 'title' => 'asdas', 'body' => 'asda', 'image' => 'asdas'],
-    ];
     /**
      * Display a listing of the resource.
      *
@@ -43,7 +35,6 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $created = Post::create($request->all());
         if ($created) {
             return redirect()->to('/posts');
@@ -71,7 +62,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post = self::$posts[$id];
+        $post = Post::find($id);
         return view('posts.edit')->with('post', $post);
     }
 
@@ -84,7 +75,9 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+        $post->update($request->all());
+        return view('posts.edit')->with('post', $post);
     }
 
     /**
@@ -95,6 +88,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        echo $id;
+        $post = Post::find($id);
+        $post->delete();
+        return redirect()->to('/posts');
     }
 }

@@ -30,25 +30,27 @@
               </a>
               <div class="work-content">
                 <div class="row">
-                  <div class="col-sm-8">
-                    <h2 class="w-title"> <a href="{{route('post-details', $post['id'])}}"> {{$post['title']}} </h2>
+                  <div class="col-sm-2">
+                    <h2 class="w-title"> <a href="{{route('posts.show', $post['id'])}}"> {{$post['title']}} </h2>
+                      <form action="{{route('posts.destroy', $post['id'])}}" method="post">
+                          @csrf @method('DELETE')
+                          <input type="submit" value="delete" onclick="return confirm('Are you sure?')">
+                      </form>
                   </div>
-                  <div class="col-sm-4">
+                  <div class="col-sm-2">
                     <div class="w-like">
-                      <a href="{{route('delete-post', $post['id'])}}" onclick="return confirm('Are you sure?')"> <i class="bi bi-trash3-fill"></i> </span></a>
-                      <a href="{{route('post-details', $post['id'])}}"> <i class="bi bi-eye-fill"></i> </span></a>
+                      <a href="{{route('posts.show', $post['id'])}}"> <i class="bi bi-eye-fill" width="5" height="5"></i> </span></a>
                     </div>
                   </div>
-                  <div class="col-sm-8">
+                  <div class="col-sm-2">
                     <div class="w-like">
-                      <a href="{{route('edit-post', $post['id'])}}"> <i class="bi bi-pencil-fill"></i> </span></a>
+                      <a href="{{route('posts.edit', $post['id'])}}"> <i class="bi bi-pencil-fill"></i> </span></a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
           @endforeach
           {{$posts->links()}}
         </div>

@@ -32,7 +32,7 @@
       <h1 class="logo"><a href="/posts">DevFolio</a></h1>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="{{url('new-post')}}">Create a new post </a></li>
+          <li><a class="nav-link scrollto" href="{{route('posts.create')}}">Create a new post </a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
