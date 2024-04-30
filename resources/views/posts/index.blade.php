@@ -35,6 +35,9 @@
                 <div class="w-more">
                   <span class="w-ctegory">Author Name: </span> / <span class="w-date"> {{$author['name']}} </span>
                 </div>
+                <div class="w-more">
+                  <span class="w-ctegory">Date: </span> / <span class="w-date"> {{$post['created_at']}} </span>
+                </div>
               </div>
 
               <br>

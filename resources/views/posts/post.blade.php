@@ -24,6 +24,10 @@
                 <span class="bi bi-chat-left-text"></span>
                 <a href="#">No. of comments</a>
               </li>
+              <li>
+                <span class="bi bi-calendar-week"></span>
+                <a href="#">{{$post['created_at']}}</a>
+              </li>
             </ul>
           </div>
           <div class="article-content">
