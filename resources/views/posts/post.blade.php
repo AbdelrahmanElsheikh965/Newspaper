@@ -54,21 +54,31 @@
             <h4 class="title-comments title-left">Comments (34)</h4>
           </div>
           <ul class="list-comments">
+            @forelse ($post->comments as $comment)
             <li>
               <div class="comment-avatar">
                 <img src="{{asset('assets/img/p.png')}}" alt="">
               </div>
               <div class="comment-details">
-                <h4 class="comment-author">Oliver Colmenares</h4>
-                <span>18 Sep 2017</span>
+                <h4 class="comment-author"> {{ $comment->user->name }} </h4>
+                <span>{{$comment->created_at}}</span>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores reprehenderit, provident cumque
-                  ipsam temporibus maiores
-                  quae natus libero optio, at qui beatae ducimus placeat debitis voluptates amet corporis.
+                  {{$comment->body}}
                 </p>
-                <a href="3">Reply</a>
               </div>
             </li>
+            @empty
+
+            <li>
+              <div class="comment-details">
+                <strong>
+                  No Comments Yet
+                </strong>
+              </div>
+            </li>
+              
+            @endforelse
+
           </ul>
         </div>
         <div class="form-comments">

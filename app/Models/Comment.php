@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,4 +24,16 @@ class Comment extends Model
     {
         return $this->morphTo();
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'id');
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        $carbonedDate = Carbon::create($value);
+        return $carbonedDate->isoFormat('dddd D MMMM Y');
+    }
+
 }

@@ -18,6 +18,8 @@ class CommentController extends Controller
             'body'=>$request->get('comment'),
             'writer_id'=> fake()->randomElement($usersIDS),
         ]);
+
+        return redirect()->back();
     }
 
 }

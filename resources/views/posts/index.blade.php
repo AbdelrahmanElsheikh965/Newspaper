@@ -23,7 +23,7 @@
 
       <div class="col-md-4">
         <div class="work-box">
-          <a href="assets/img/work-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
+          <a href="{{asset('images/' . $post['image'])}}" data-gallery="portfolioGallery" class="portfolio-lightbox">
             <div class="work-img">
               <img src="{{asset('images/' . $post['image'])}}" class="img-fluid">
             </div>
