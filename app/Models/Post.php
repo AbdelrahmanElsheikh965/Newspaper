@@ -13,6 +13,11 @@ class Post extends Model
     use SoftDeletes;
     protected $guarded = [];
 
+    public function comments()
+    {
+        return $this->morphMany('App\Models\Comment', 'commentable');
+    }
+    
     public function getCreatedAtAttribute($value)
     {
         $carbonedDate = Carbon::create($value);

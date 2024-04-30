@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +15,7 @@ use App\Http\Controllers\PostController;
 
 Route::resource('posts', 'PostController');
 Route::get('/restore', [App\Helpers\Helper::class, 'restore']);
+Route::post('/posts/{post}/comments', [App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
 
 Route::get('/', function() {
     return view('welcome');
