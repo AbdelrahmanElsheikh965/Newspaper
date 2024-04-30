@@ -29,7 +29,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        return view('posts.create')->with([
+            'users' => User::all(),
+        ]);
     }
 
     /**
@@ -77,7 +79,10 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        return view('posts.edit')->with('post', $post);
+        return view('posts.edit')->with([
+            'post' => $post,
+            'users' => User::all(),
+        ]);
     }
 
     /**
