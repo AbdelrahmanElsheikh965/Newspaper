@@ -117,6 +117,7 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $post->delete();
+        Helper::deleteImage($post->image);
         return redirect()->to('/posts');
     }
 }

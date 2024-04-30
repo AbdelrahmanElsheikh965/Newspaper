@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class Helper
 {
@@ -19,6 +20,11 @@ class Helper
               $image->move(public_path($path), $image->getClientOriginalName());
           }
       }
+  }
+
+  public static function deleteImage($photo)
+  {
+    Storage::disk('public')->delete('images/' . $photo);
   }
 
 }
