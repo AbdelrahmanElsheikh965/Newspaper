@@ -41,7 +41,7 @@
               <div class="col-sm-4">
                 <form action="{{route('posts.destroy', $post['id'])}}" method="post">
                   @csrf @method('DELETE') 
-                  <input type="submit" value="delete" onclick="return confirm('Are you sure?')">
+                  <input class="btn btn-danger" type="submit" value="delete" onclick="return confirm('Are you sure?')">
                 </form>
               </div>
 
