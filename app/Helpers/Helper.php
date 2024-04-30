@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Helpers;
+
+use App\Models\Post;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -25,6 +28,12 @@ class Helper
   public static function deleteImage($photo)
   {
     Storage::disk('public')->delete('images/' . $photo);
+  }
+
+  public function restore()
+  {
+    Post::onlyTrashed()->update(['deleted_at' => null]);
+    return redirect()->to('/posts');
   }
 
 }

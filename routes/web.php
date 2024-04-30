@@ -15,7 +15,7 @@ use App\Http\Controllers\PostController;
 */
 
 Route::resource('posts', 'PostController');
-
+Route::get('/restore', [App\Helpers\Helper::class, 'restore']);
 
 Route::get('/', function() {
     return view('welcome');
