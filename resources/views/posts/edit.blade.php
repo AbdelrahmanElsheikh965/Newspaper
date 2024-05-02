@@ -38,15 +38,15 @@
 
                       <div class="col-md-12">
                         <div class="form-group">
-                          <select name="room">
+                          <select name="creator_id">
                             @forelse ($users as $user)
-                            <option value="Application1">{{$user['name']}}</option>
+                            <option value="{{$user['id']}}">{{$user['name']}}</option>
                             @empty
-                            <option value="Application1">Application1</option>
+                            <option value="Application1">No-users--No</option>
                             @endforelse
                           </select>
-                        </div><!--/.form-group-->
-                      </div><!--/.col-->
+                        </div>
+                      </div>
 
                       <div class="col-md-12 mb-3 mt-3">
                         <div class="form-group">

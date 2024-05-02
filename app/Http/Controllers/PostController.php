@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Helpers\Helper;
+use App\Http\Requests\PostRequest;
 use App\Models\User;
 
 class PostController extends Controller
@@ -40,14 +41,15 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        
+        // dd($request);
         if ($request->file('post_image')) {
             Helper::saveImage($request->file('post_image'));
             $request->merge(['image'=> $request->file('post_image')->getClientOriginalName()]);
             $created = Post::create($request->except('post_image'));
         }else{
+            $request->merge(['image'=> 'cbmw.jpg']);
             $created = Post::create($request->except('post_image'));
         }
 
@@ -104,7 +106,7 @@ class PostController extends Controller
             $post->update($request->except('post_image'));
         }
 
-        return view('posts.edit')->with('post', $post);
+        return view('posts.post')->with('post', $post);
     }
 
     /**

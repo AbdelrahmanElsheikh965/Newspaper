@@ -33,6 +33,9 @@
               <div class="col-sm-8">
                 <h2 class="w-title"> <a href="{{route('posts.show', $post['id'])}}"> {{$post['title']}} </h2>
                 <div class="w-more">
+                  <span class="w-ctegory">Slug: </span> / <span class="w-date"> {{$post['slug']}} </span>
+                </div>
+                <div class="w-more">
                   <span class="w-ctegory">Author Name: </span> / <span class="w-date"> {{$author['name']}} </span>
                 </div>
                 <div class="w-more">

@@ -14,6 +14,17 @@
                   <h5 class="title-left">
                     Save a new Post
                   </h5>
+
+                  @if ($errors->any())
+                  <div class="alert alert-danger">
+                    <ul>
+                      @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                      @endforeach
+                    </ul>
+                  </div>
+                  @endif
+                  
                 </div>
                 <div>
                   <form action="{{route('posts.store')}}" method="POST" enctype="multipart/form-data">
@@ -36,11 +47,11 @@
 
                       <div class="col-md-12">
                         <div class="form-group">
-                          <select name="room">
+                          <select name="creator_id">
                             @forelse ($users as $user)
-                            <option value="Application1">{{$user['name']}}</option>
+                            <option value="{{$user['id']}}">{{$user['name']}}</option>
                             @empty
-                            <option value="Application1">Application1</option>
+                            <option value="Application1">No-users--No</option>
                             @endforelse
                           </select>
                         </div><!--/.form-group-->
@@ -48,7 +59,7 @@
 
                       <div class="col-md-12 mb-3 mt-3">
                         <div class="form-group">
-                          <input type="file" name="post_image" required class="form-control" id="name">
+                          <input type="file" name="post_image" class="form-control" id="name">
                         </div>
                       </div>
 
