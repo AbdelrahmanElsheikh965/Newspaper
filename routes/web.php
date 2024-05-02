@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::middleware('auth:web')->get('profile', 'UserController@viewProfile');
 Route::middleware('auth:web')->resource('posts', 'PostController');
 Route::get('/restore', [App\Helpers\Helper::class, 'restore']);
 Route::post('/posts/{post}/comments', [App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
