@@ -48,9 +48,15 @@ class PostController extends Controller
             Helper::saveImage($request->file('post_image'));
             $request->merge(['image'=> $request->file('post_image')->getClientOriginalName()]);
             $created = Post::create($request->except('post_image'));
+            
         }else{
             $request->merge(['image'=> 'cbmw.jpg']);
-            $created = Post::create($request->except('post_image'));
+            $created = Post::create($request->except('post_image', 'tags'));
+            // dd($created);
+            $postTags = explode(",", $request->tags);
+            foreach ($postTags as $tag) {
+                $created->attachTag($tag);
+            }
         }
 
         if ($created) {

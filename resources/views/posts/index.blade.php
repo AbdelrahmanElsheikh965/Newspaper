@@ -41,6 +41,12 @@
                 <div class="w-more">
                   <span class="w-ctegory">Date: </span> / <span class="w-date"> {{$post['created_at']}} </span>
                 </div>
+                <div class="w-more">
+                  <span class="w-ctegory">Tags: </span> / 
+                    @foreach ($post->tags as $tag)
+                      <span class="w-date"> {{$tag->name}} </span>
+                    @endforeach
+                </div>
               </div>
 
               <br>

@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Tags\HasTags;
 
 class Post extends Model
 {
+    use HasTags;
     use Sluggable;
     use HasFactory;
     use SoftDeletes;

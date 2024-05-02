@@ -13,14 +13,14 @@
               <div class="row">
                 <div class="col-sm-6 col-md-5">
                   <div class="about-img">
-                    <img src="assets/img/testimonial-2.jpg" class="img-fluid rounded b-shadow-a" alt="">
+                    <img src="assets/img/" class="img-fluid rounded b-shadow-a" alt="">
                   </div>
                 </div>
                 <div class="col-sm-6 col-md-7">
                   <div class="about-info">
-                    <p><span class="title-s">Name: </span> <span>Morgan Freeman</span></p>
+                    <p><span class="title-s">Name: </span> <span> {{auth()->user()->name}} </span></p>
+                    <p><span class="title-s">Email: </span> <span>{{auth()->user()->email}}</span></p>
                     <p><span class="title-s">Profile: </span> <span>full stack developer</span></p>
-                    <p><span class="title-s">Email: </span> <span>contact@example.com</span></p>
                     <p><span class="title-s">Phone: </span> <span>(617) 557-0089</span></p>
                   </div>
                 </div>
@@ -34,14 +34,6 @@
                 <span>CSS3</span> <span class="pull-right">75%</span>
                 <div class="progress">
                   <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <span>PHP</span> <span class="pull-right">50%</span>
-                <div class="progress">
-                  <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <span>JAVASCRIPT</span> <span class="pull-right">90%</span>
-                <div class="progress">
-                  <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
               </div>
             </div>
@@ -62,11 +54,6 @@
                   Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vivamus suscipit tortor eget felis
                   porttitor volutpat. Vestibulum
                   ac diam sit amet quam vehicula elementum sed sit amet dui. porttitor at sem.
-                </p>
-                <p class="lead">
-                  Nulla porttitor accumsan tincidunt. Quisque velit nisi, pretium ut lacinia in, elementum id enim.
-                  Nulla porttitor accumsan
-                  tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
                 </p>
               </div>
             </div>

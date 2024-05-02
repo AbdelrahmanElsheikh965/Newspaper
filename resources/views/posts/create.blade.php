@@ -43,6 +43,9 @@
                       </div>
 
                       <div class="col-md-12 mb-3 mt-3">
+                      <div class="form-group">
+                          <input type="text" name="tags" class="form-control" id="name" placeholder="Enter comma separated tags">
+                        </div>
                       </div>
 
                       <div class="col-md-12">
