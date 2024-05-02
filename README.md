@@ -1,3 +1,3 @@
-# Laralog
+# Newspaper
 
-Laralog is a Simple blogging application in Laravel.
+Newspaper is a Simple blogging application in Laravel.
