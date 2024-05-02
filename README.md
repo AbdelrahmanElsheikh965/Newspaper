@@ -1,3 +1,3 @@
 # Newspaper
 
-Newspaper is a Simple blogging application in Laravel.
+Newspaper is a simple post management application in Laravel.
