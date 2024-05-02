@@ -26,7 +26,7 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
+  <header id="header" class="fixed-top" style="background-color: black ;">
     <div class="container d-flex align-items-center justify-content-between">
 
       <h1 class="logo"><a href="/posts">DevFolio</a></h1>
@@ -47,7 +47,7 @@
 
     </div>
   </header><!-- End Header -->
-
+  <br> <br>
   <main id="main">
 
     @yield('content')

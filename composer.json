@@ -13,6 +13,7 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.5",
         "nesbot/carbon": "^2.72",
+        "predis/predis": "^2.2",
         "spatie/laravel-tags": "^4.6"
     },
     "require-dev": {
