@@ -8,7 +8,7 @@
       <div class="col-sm-12">
         <div class="title-box text-center">
           <h3 class="title-a">
-            Portfolio
+            Posts
           </h3>
           <p class="subtitle-a">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
@@ -46,7 +46,7 @@
               <br>
               <div class="col-sm-4">
                 <form action="{{route('posts.destroy', $post['id'])}}" method="post">
-                  @csrf @method('DELETE') 
+                  @csrf @method('DELETE')
                   <input class="btn btn-danger" type="submit" value="delete" onclick="return confirm('Are you sure?')">
                 </form>
               </div>
@@ -57,13 +57,13 @@
                   <x-button target="{{route('posts.show', $post['id'])}}" type="primary" text="bi bi-eye-fill" />
                 </div>
               </div>
-              
+
               <div class="col-sm-2">
                 <div class="w-like">
                   <x-button target="{{route('posts.edit', $post['id'])}}" type="secondary" text="bi bi-pencil-fill" />
                 </div>
               </div>
-           
+
             </div>
           </div>
         </div>

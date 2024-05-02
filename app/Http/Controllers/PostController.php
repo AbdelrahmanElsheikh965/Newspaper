@@ -97,7 +97,8 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $post = Post::find($id);
-        
+        $this->authorize('update', $post);
+
         if ($request->file('post_image')) {
             Helper::saveImage($request->file('post_image'));
             $request->merge(['image' => $request->file('post_image')->getClientOriginalName()]);
@@ -118,6 +119,7 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+        $this->authorize('delete', $post);
         $post->delete();
         Helper::deleteImage($post->image);
         return redirect()->to('/posts');
