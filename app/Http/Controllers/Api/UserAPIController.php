@@ -40,8 +40,45 @@ class UserAPIController extends Controller
                 'Message' => 'Login Success',
                 'User' => $user,
                 'Token' => $token
-            ], Response::HTTP_ACCEPTED);
+            ], Response::HTTP_OK);
         }
+
+        return response()->json([
+            'Message' => 'Error Check Your Data'
+        ], Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
+    public function register(Request $request)
+    {
+        $rules = [
+            'name' => 'required',
+            'email' => 'required|unique:users|email:rfc,dns',
+            'password' => 'required|confirmed|min:8',
+        ];
+
+        $validation = Validator::make($request->all(), $rules);
+
+        if ($validation->fails()) {
+            return response(
+                [
+                    'Message' => 'Validation faild',
+                    'Errors' => $validation->messages()
+                ],
+                Response::HTTP_UNPROCESSABLE_ENTITY
+            );
+        }
+
+        $password = Hash::make($request->input('password'));
+        $request->merge(['password' => $password]);
+        $user = User::create($request->all());
+        $token = $user->createToken('token')->plainTextToken;
+
+        if ($user)
+            return response()->json([
+                'Message' => 'Registered Successefully',
+                'User' => $user,
+                'Token' => $token
+            ], Response::HTTP_OK);
 
         return response()->json([
             'Message' => 'Error Check Your Data'

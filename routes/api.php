@@ -15,22 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::post('login', 'UserAPIController@login');
-Route::apiResource('posts', 'PostAPIController');
-
- 
-Route::post('/tokens/create', function (Request $request) {
-    dd($request->user());
-    // $token = $request->user()->createToken($request->token_name);
-    // return ['token' => $token->plainTextToken];
-});
-
-// Route::post('register', 'AuthController@register');
-
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+
+Route::post('register', 'UserAPIController@register');
+
+Route::post('login',    'UserAPIController@login');
+
+Route::apiResource('posts', 'PostAPIController');

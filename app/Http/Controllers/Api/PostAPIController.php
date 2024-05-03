@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class PostAPIController extends Controller
 {
@@ -21,7 +22,7 @@ class PostAPIController extends Controller
      */
     public function index()
     {
-        return PostResource::collection(Post::with('comments')->get());        
+        return PostResource::collection(Post::with('comments')->get());         // Eager loading   
     }
 
     /**
@@ -40,12 +41,15 @@ class PostAPIController extends Controller
         }else{
             $request->merge(['image'=> 'cbmw.jpg']);
             $created = Post::create($request->except('post_image', 'tags'));
-            // dd($created);
             $postTags = explode(",", $request->tags);
             foreach ($postTags as $tag) {
                 $created->attachTag($tag);
             }
         }
+
+        return response()->json([
+            'Message' => 'Done, Post is created'
+        ], Response::HTTP_OK);
     }
 
     /**
