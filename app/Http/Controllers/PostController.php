@@ -43,7 +43,7 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-        // dd($request);
+        
         if ($request->file('post_image')) {
             Helper::saveImage($request->file('post_image'));
             $request->merge(['image'=> $request->file('post_image')->getClientOriginalName()]);

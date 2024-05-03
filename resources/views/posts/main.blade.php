@@ -34,8 +34,9 @@
         <ul>
           <li><a class="nav-link scrollto" href="{{url('profile')}}"> Profile </a></li>
           <li><a class="nav-link scrollto" href="{{route('home')}}"> Home </a></li>
-          <li><a class="nav-link scrollto" href="{{route('posts.create')}}">Create a new post </a></li>
-          <li><a class="nav-link scrollto" href="{{url('restore')}}">Restore deleted posts </a></li>
+          <li><a class="nav-link scrollto" href="{{route('posts.create')}}"> Create a new post </a></li>
+          <li><a class="nav-link scrollto" href="{{url('restore')}}"> Restore deleted posts </a></li>
+          <li><a class="nav-link scrollto" href="{{url('redis')}}"> Delete posts 1h ago </a></li>
           &nbsp; &nbsp; &nbsp;
           <form action="{{ route('logout') }}" method="POST">
             @csrf
