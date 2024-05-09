@@ -14,15 +14,11 @@
             <ul>
               <li>
                 <span class="bi bi-person"></span>
-                <a href="#">Author Name</a>
-              </li>
-              <li>
-                <span class="bi bi-tag"></span>
-                <a href="#">Tag</a>
+                <a href="#">{{$post->user->name}}</a>
               </li>
               <li>
                 <span class="bi bi-chat-left-text"></span>
-                <a href="#">No. of comments</a>
+                <a href="#"> {{ $post->comments->count() }} </a>
               </li>
               <li>
                 <span class="bi bi-calendar-week"></span>
@@ -30,28 +26,31 @@
               </li>
             </ul>
           </div>
+          <div class="post-meta">
+            <ul>
+              @forelse ($post->tags as $tag)
+                <li>
+                  <span class="bi bi-tag"></span>
+                  <a href="#">{{$tag->name}}</a>
+                </li>
+              @empty
+                <li>
+                  <span class="bi bi-tag"></span>
+                  <a href="#">tags</a>
+                </li>                
+              @endforelse
+            </ul>
+          </div>
           <div class="article-content">
             <p> Body:
               {{$post['body']}}
-            </p>
-            <p>
-              Random Text Random Text Random Text Random Text Random Text Random Text Random Text Random Text Random Text
-              Random Text Random Text Random Text Random Text Random Text Random Text Random Text Random Text Random Text
-              Random Text Random Text Random Text Random Text Random Text Random Text Random Text Random Text Random Text
-              Random Text Random Text Random Text Random Text Random Text Random Text Random Text Random Text Random Text
-            </p>
-            <p>
-              Random Text Random Text Random Text Random Text Random Text Random Text Random Text Random Text Random Text
-              Random Text Random Text Random Text Random Text Random Text Random Text Random Text Random Text Random Text
-              Random Text Random Text Random Text Random Text Random Text Random Text Random Text Random Text Random Text
-              Random Text Random Text Random Text Random Text Random Text Random Text Random Text Random Text Random Text
             </p>
           </div>
         </div>
 
         <div class="box-comments">
           <div class="title-box-2">
-            <h4 class="title-comments title-left">Comments (34)</h4>
+            <h4 class="title-comments title-left">Comments ({{ $post->comments->count() }})</h4>
           </div>
           <ul class="list-comments">
             @forelse ($post->comments as $comment)

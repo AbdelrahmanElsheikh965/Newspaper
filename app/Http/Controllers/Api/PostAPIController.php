@@ -109,10 +109,10 @@ class PostAPIController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($post)
     {
+        $post = Post::find(24);
         dd($post);
-        // $post = Post::find($id);
         // $this->authorize('delete', $post);
         // $post->delete();
         // Helper::deleteImage($post->image);
