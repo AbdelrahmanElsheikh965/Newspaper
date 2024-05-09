@@ -2,6 +2,7 @@
 
 use App\Jobs\PruneOldPostsJob;
 use App\Models\Post;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
@@ -37,3 +38,34 @@ Route::get('/', function() {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+use Laravel\Socialite\Facades\Socialite;
+ 
+Route::get('/auth/redirect', function () {
+    // return "hi";
+    return Socialite::driver('github')->redirect();
+})->name('auth.github');
+ 
+Route::get('/auth/callback', function () {
+
+    $githubUser = Socialite::driver('github')->user();
+    
+    // dd($githubUser->email, $githubUser->token, $githubUser->refreshToken );
+
+    // $user->token
+
+    $user = User::updateOrCreate([
+        'github_id' => $githubUser->id,
+    ], [
+        'name' => $githubUser->name,
+        'email' => 'githubUser@email.com',//$githubUser->email,
+        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi' ,//$githubUser->token,       // store token as a password temporarily
+        'github_token' => $githubUser->token,
+        'github_refresh_token' => $githubUser->refreshToken,
+    ]);
+ 
+    Auth::login($user);
+ 
+    return redirect('/posts');
+
+});

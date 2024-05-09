@@ -44,6 +44,10 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
+                                
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('auth.github') }}">{{ __('Login With Github') }}</a>
+                                </li>
                             @endif
 
                             @if (Route::has('register'))

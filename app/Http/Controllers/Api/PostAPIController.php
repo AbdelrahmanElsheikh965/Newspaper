@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PostRequest;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -35,11 +37,10 @@ class PostAPIController extends Controller
     {
         if ($request->file('post_image')) {
             Helper::saveImage($request->file('post_image'));
-            $request->merge(['image'=> $request->file('post_image')->getClientOriginalName()]);
+            $request->merge(['image' => $request->file('post_image')->getClientOriginalName()]);
             $created = Post::create($request->except('post_image'));
-            
-        }else{
-            $request->merge(['image'=> 'cbmw.jpg']);
+        } else {
+            $request->merge(['image' => 'cbmw.jpg']);
             $created = Post::create($request->except('post_image', 'tags'));
             $postTags = explode(",", $request->tags);
             foreach ($postTags as $tag) {
@@ -60,7 +61,7 @@ class PostAPIController extends Controller
      */
     public function show(Post $post)
     {
-        return new PostResource($post);        
+        return new PostResource($post);
     }
 
     /**
@@ -70,9 +71,31 @@ class PostAPIController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        //
+        dd($post);
+        // $this->authorize('update', $post);
+
+        // if ($request->file('post_image')) {
+        //     Helper::saveImage($request->file('post_image'));
+        //     $request->merge(['image' => $request->file('post_image')->getClientOriginalName()]);
+        //     $post->update($request->except('post_image'));
+        //     return response(
+        //         [
+        //             'Message' => 'Post updated',
+        //         ],
+        //         Response::HTTP_OK
+        //     );
+        // }
+
+        // $updated = $post->update($request->except('post_image'));
+
+        // return ($updated) ? response(
+        //     ['Message' => 'Post updated'],
+        // ) : response()->json([
+        //     'Message' => 'Error Check Your Data'
+        // ], Response::HTTP_UNPROCESSABLE_ENTITY);
+
     }
 
     /**

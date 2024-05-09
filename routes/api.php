@@ -24,3 +24,4 @@ Route::post('register', 'UserAPIController@register');
 Route::post('login',    'UserAPIController@login');
 
 Route::apiResource('posts', 'PostAPIController');
+

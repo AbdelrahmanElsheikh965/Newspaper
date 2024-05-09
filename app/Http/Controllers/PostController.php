@@ -47,21 +47,21 @@ class PostController extends Controller
         if ($request->file('post_image')) {
             Helper::saveImage($request->file('post_image'));
             $request->merge(['image'=> $request->file('post_image')->getClientOriginalName()]);
-            $created = Post::create($request->except('post_image'));
+            $created = Post::create($request->except('post_image', 'tags'));
+            $postTags = explode(",", $request->tags);
+            foreach ($postTags as $tag) 
+                $created->attachTag($tag);
             
         }else{
             $request->merge(['image'=> 'cbmw.jpg']);
             $created = Post::create($request->except('post_image', 'tags'));
-            // dd($created);
             $postTags = explode(",", $request->tags);
-            foreach ($postTags as $tag) {
+            foreach ($postTags as $tag) 
                 $created->attachTag($tag);
-            }
         }
 
-        if ($created) {
+        if ($created) 
             return redirect()->to('/posts');
-        }
 
         return redirect()->to('/new-post');
     }
@@ -100,7 +100,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, $id)
     {
         $post = Post::find($id);
         $this->authorize('update', $post);
