@@ -38,7 +38,11 @@ class PostAPIController extends Controller
         if ($request->file('post_image')) {
             Helper::saveImage($request->file('post_image'));
             $request->merge(['image' => $request->file('post_image')->getClientOriginalName()]);
-            $created = Post::create($request->except('post_image'));
+            $created = Post::create($request->except('post_image', 'tags'));
+            $postTags = explode(",", $request->tags);
+            foreach ($postTags as $tag) {
+                $created->attachTag($tag);
+            }
         } else {
             $request->merge(['image' => 'cbmw.jpg']);
             $created = Post::create($request->except('post_image', 'tags'));
@@ -71,30 +75,31 @@ class PostAPIController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(PostRequest $request, Post $post)
+    public function update(Request $request, Post $post)
     {
-        dd($post);
+        // dd($request->all());
+        // return "Asd";
         // $this->authorize('update', $post);
 
-        // if ($request->file('post_image')) {
-        //     Helper::saveImage($request->file('post_image'));
-        //     $request->merge(['image' => $request->file('post_image')->getClientOriginalName()]);
-        //     $post->update($request->except('post_image'));
-        //     return response(
-        //         [
-        //             'Message' => 'Post updated',
-        //         ],
-        //         Response::HTTP_OK
-        //     );
-        // }
+        if ($request->file('post_image')) {
+            Helper::saveImage($request->file('post_image'));
+            $request->merge(['image' => $request->file('post_image')->getClientOriginalName()]);
+            $post->update($request->except('post_image'));
+            return response(
+                [
+                    'Message' => 'Post updated',
+                ],
+                Response::HTTP_OK
+            );
+        }
 
-        // $updated = $post->update($request->except('post_image'));
+        $updated = $post->update($request->except('post_image'));
 
-        // return ($updated) ? response(
-        //     ['Message' => 'Post updated'],
-        // ) : response()->json([
-        //     'Message' => 'Error Check Your Data'
-        // ], Response::HTTP_UNPROCESSABLE_ENTITY);
+        return ($updated) ? response(
+            ['Message' => 'Post updated'],
+        ) : response()->json([
+            'Message' => 'Error Check Your Data'
+        ], Response::HTTP_UNPROCESSABLE_ENTITY);
 
     }
 
@@ -106,6 +111,13 @@ class PostAPIController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        dd($post);
+        // $post = Post::find($id);
+        // $this->authorize('delete', $post);
+        // $post->delete();
+        // Helper::deleteImage($post->image);
+        // return response()->json([
+        //     'Message' => 'Done, Post is deleted'
+        // ], Response::HTTP_OK);
     }
 }
