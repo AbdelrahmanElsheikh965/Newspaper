@@ -1,7 +1,7 @@
 @extends('posts.main')
 
 @section('content')
-<!-- ======= Portfolio Section ======= -->
+
 <section id="work" class="portfolio-mf sect-pt4 route">
   <div class="container">
     <div class="row">
@@ -13,6 +13,9 @@
           <p class="subtitle-a">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
           </p>
+          
+          <h4 id="check" ></h4>
+
           <div class="line-mf"></div>
         </div>
       </div>
@@ -80,3 +83,34 @@
   </div>
 </section><!-- End Portfolio Section -->
 @endsection
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <script>
+        (function () {
+
+          function long_polling(){
+
+            $.ajax({
+              
+                url: '{{route("posts.check")}}',
+                type: 'GET',
+                success: function (response) {
+                  
+                  if (response === "true") {
+                    $('#check').html("First comment is found ");
+                    throw '';
+                  } else {
+                    $('#check').html("First comment is NOT found ");
+                    long_polling();
+                  }
+                }
+            });
+
+          }
+
+          long_polling();
+        })();
+    </script>

@@ -1,14 +1,18 @@
 <?php
 
 use App\Jobs\PruneOldPostsJob;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,12 +42,16 @@ Route::get('/', function() {
 
 Auth::routes();
 
+Route::get('/check', function () {
+    return response()->json((Comment::find(2)) ? "true" : "false");
+})->name('posts.check');
+
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-use Laravel\Socialite\Facades\Socialite;
  
 Route::get('/auth/redirect', function () {
-    // return "hi";
+    
     return Socialite::driver('github')->redirect();
 })->name('auth.github');
  

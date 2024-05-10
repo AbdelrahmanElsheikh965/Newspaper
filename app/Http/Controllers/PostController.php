@@ -125,7 +125,7 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
-        $this->authorize('delete', $post);
+        // $this->authorize('delete', $post);
         $post->delete();
         Helper::deleteImage($post->image);
         return redirect()->to('/posts');
