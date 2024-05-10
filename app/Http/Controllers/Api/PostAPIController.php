@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PostRequest;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -39,17 +37,19 @@ class PostAPIController extends Controller
             Helper::saveImage($request->file('post_image'));
             $request->merge(['image' => $request->file('post_image')->getClientOriginalName()]);
             $created = Post::create($request->except('post_image', 'tags'));
+            
             $postTags = explode(",", $request->tags);
-            foreach ($postTags as $tag) {
+            foreach ($postTags as $tag) 
                 $created->attachTag($tag);
-            }
+
         } else {
             $request->merge(['image' => 'cbmw.jpg']);
             $created = Post::create($request->except('post_image', 'tags'));
+            
             $postTags = explode(",", $request->tags);
-            foreach ($postTags as $tag) {
+            foreach ($postTags as $tag) 
                 $created->attachTag($tag);
-            }
+            
         }
 
         return response()->json([
@@ -60,7 +60,7 @@ class PostAPIController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Post $post
      * @return \Illuminate\Http\Response
      */
     public function show(Post $post)
@@ -77,8 +77,9 @@ class PostAPIController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        // dd($request->all());
+        dd($request->all());
         // return "Asd";
+        // dd($post);
         // $this->authorize('update', $post);
 
         if ($request->file('post_image')) {

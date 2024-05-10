@@ -30,6 +30,7 @@ Route::middleware('auth:web')->get('profile', 'UserController@viewProfile');
 Route::middleware('auth:web')->resource('posts', 'PostController');
 Route::get('/restore', [App\Helpers\Helper::class, 'restore']);
 Route::post('/posts/{post}/comments', [App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
+Route::get('/posts/{post}/comments', [App\Http\Controllers\CommentController::class, 'getComments'])->name('comments.get');
 
 Route::get('/', function() {
     return view('welcome');
@@ -49,10 +50,6 @@ Route::get('/auth/redirect', function () {
 Route::get('/auth/callback', function () {
 
     $githubUser = Socialite::driver('github')->user();
-    
-    // dd($githubUser->email, $githubUser->token, $githubUser->refreshToken );
-
-    // $user->token
 
     $user = User::updateOrCreate([
         'github_id' => $githubUser->id,

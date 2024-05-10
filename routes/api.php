@@ -25,3 +25,5 @@ Route::post('login',    'UserAPIController@login');
 
 Route::apiResource('posts', 'PostAPIController');
 
+// Route::post('posts/update/{post}', 'PostAPIController@update');
+
